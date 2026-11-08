@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="{{url_for('static', filename='css/styles.css')}}">
+    </head>
+    <body>
+<div id="homepage" class="homepage">
+    <div id="rectangle1" class="rectangle1"></div>
+    <div id="ecoexplora" class="ecoexplora">EcoExplora</div>
+    <img id="casey-horner-4rdca5hblcs-unsplash1" class="casey-horner-4rdca5hblcs-unsplash1" src="{{url_for('static', filename='images/casey-horner-4rDCa5hBlCs-unsplash.jpg')}}"/>
+<div id="rectangle20" class="rectangle2"></div>
+<div id="rectangle3" class="rectangle3"></div>
+<div id="welcometoecoexplora" class="welcometoecoexplora">Welcome to EcoExplora!</div>
+<div id="home-rectangle5" class="home-rectangle5"></div>
+<a href="{{ url_for('selection')}}">
+    <button class="start-btn">Start</button>
+</a>
+<img id="logo" class="logo" src="{{url_for('static', filename='images/logo.png')}}"/>
+<div id="discovernature" class="discovernature">
+    <p>Discover nature all around you through personalized scavenger hunts!
+    </p>
+   <p> Every adventure helps you learn more about the world around you!
+    </p>
+</div>
+</div>
+</body>
+</html>

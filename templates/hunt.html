@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="{{url_for('static', filename='css/styles.css')}}">
+    </head>
+    <body>
+<div id='scavengerhunt' class='scavengerhunt'>
+<div id='rectangle1' class='rectangle1'>
+</div>
+<img id="logo" class="logo" src="{{url_for('static', filename='images/logo.png')}}"/></img>
+<div id='rectangle7' class='rectangle7'>
+<a href="{{url_for('home')}}" class="home-link">Home</a></div>
+<div id='ecoexplora' class='ecoexplora'>
+EcoExplora</div>
+<div id='rectangle4' class='rectangle4'>
+</div>
+<div id='rectangle20' class='rectangle20'>
+</div>
+<div id='hunt-rectangle5' class='hunt-rectangle5'>
+</div>
+<div id='scavengerhunt2' class='scavengerhunt2'>
+Scavenger Hunt</div>
+<div id='area-label' class='area-label'>
+Area:</div>
+<div id='habitat-label' class='habitat-label'>
+Habitat:</div>
+<div id='rectangle15' class='rectangle15'>
+</div>
+<div id='rectangle16' class='rectangle16'>
+</div>
+<div class="area">{{ area }}</div>
+<div class="habitat">{{ habitat }}</div>
+<div id='objective-label' class='objective-label'>
+Objective #1</div>
+<div id="objectiveTitle" class="objectivetext"> {{ hunt[0].title }}</div>
+<div id="objectiveDescription" class="objectivedescription">
+    {{ hunt[0].description }}</div>
+<img
+id="objectiveImage"
+class="objectiveImage"
+src="{{ url_for('static',
+filename='images/' ~ hunt[0].image) }}"
+alt="Objective Image">
+<div id='rectangle17' class='rectangle17'>
+</div>
+<div id='rectangle18' class='rectangle18'>
+</div>
+<button
+id="markasfound"
+class="markasfound"
+onclick="markFound()">
+Mark as Found
+</button>
+<div id='rectangle19' class='rectangle19'>
+</div>
+<button
+class="previous"
+onclick="previousObjective()"
+>
+Previous
+</button>
+<button
+class="next"
+onclick="nextObjective()"
+>
+Next
+</button>
+<div id='rectangle21' class='rectangle21'>
+</div>
+<a href="{{ url_for('selection') }}">
+    <button class="back">
+        Back
+    </button>
+</a>
+<div id='rectangle22' class='rectangle22'>
+</div>
+<a href="{{ url_for('new_hunt') }}">
+    <button class="generatenewhunt">
+        Generate<br>New Hunt
+    </button>
+</a>
+<div id='rectangle25' class='rectangle25'>
+</div>
+<div id='rectangle28' class='rectangle28'>
+</div>
+<button
+id="undo"
+class="undo"
+onclick="undoFound()">
+Undo
+</button>
+</div>
+<script>
+    const objectives = JSON.parse('{{ hunt|tojson|safe }}');
+
+    let current = 0;
+    let found = [false, false, false, false, false];
+
+    function displayObjective(){
+
+        document.getElementById(
+            "objective-label").innerText = 
+    `Objective #${current+1}`;
+
+    document.getElementById(
+        "objectiveTitle").innerText =
+    objectives[current].title;
+
+    document.getElementById(
+        "objectiveDescription").innerText =
+        objectives[current].description;
+
+    document.getElementById("objectiveImage").src =
+        "/static/images/" + objectives[current].image;
+    
+
+    if(found[current]) {
+        document.getElementById("markasfound").innerText =
+        "Found";
+    } else {
+        document.getElementById("markasfound").innerText =
+        "Mark as Found";
+    }
+}
+    function nextObjective() {
+        current++;
+        if (current >= objectives.length) {
+            current = 0;
+        }
+        displayObjective();
+        
+    }
+    function previousObjective() {
+        current--;
+
+        if (current < 0) {
+            current = objectives.length -1;
+        }
+            displayObjective();
+        }
+
+    function markFound() {
+        found[current] = true;
+
+        document.getElementById("markasfound").innerText =
+        "Found";
+
+    document.getElementById("markasfound").style.backgroundColor =
+        "#90EE90";
+    }
+
+    function undoFound() {
+        found[current] = false;
+
+        document.getElementById("markasfound").innerText =
+            "Mark as Found";
+    document.getElementById("markasfound").style.backgroundColor =
+        "#66f6ae";
+    }
+    window.onload = function() {
+
+    displayObjective();
+    };
+</script>
+</body>
+</html>

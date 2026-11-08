@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="{{url_for('static', filename='css/styles.css')}}">
+    </head>
+    <body>
+<div id='areaselection' class='areaselection'>
+<div id='rectangle1' class='rectangle1'>
+</div>
+<img id="logo" class="logo" src="{{url_for('static', filename='images/logo.png')}}"/></img>
+<div id='ecoexplora' class='ecoexplora'>
+EcoExplora</div>
+<div id='rectangle4' class='rectangle4'>
+</div>
+<div id='rectangle10' class='rectangle10'>
+</div>
+<div id='rectangle11' class='rectangle11'>
+</div>
+<div id='rectangle12' class='rectangle12'>
+</div>
+<div id='rectangle13' class='rectangle13'>
+</div>
+<div id='selection-rectangle5' class='selection-rectangle5'>
+</div>
+<div id='rectangle7' class='rectangle7'>
+<a href="{{url_for('home')}}" class="home-link">Home</a></div>
+<div id='areaselection2' class='areaselection2'>
+Area Selection</div>
+<form
+method="POST"
+action="{{url_for('save_area')}}">
+<div id='enteranexplorationarea' class='enteranexplorationarea'>
+Enter an Exploration Area:</div>
+<div id='rectangle8' class='rectangle8'>
+<input
+class="area-input"
+type="text"
+name="area"
+placeholder="ex.MacKerricher State Park"
+required
+></div>
+<div id='chooseyourhabitattype' class='chooseyourhabitattype'>
+Choose your Habitat Type:</div>
+<div id='rectangle9' class='rectangle9'>
+</div>
+<div id="enterthelocationandchoosethehabitat" class="enterthelocationandchoosethehabitat">
+    Enter the location you plan to explore and choose the habitat that best matches your surroundings to generate a personalized scavenger hunt.
+    <p>Most scavenger hunts take approximately 10-15 minutes to complete. Your exploration area is only used to generate hunt objectives.</p></div>
+<label class="habitat-option forest">
+    <input
+type="radio"
+name="habitat"
+value="Forest" 
+required>
+<span>
+Forest</span>
+</label>
+<label class="habitat-option coastal">
+<input
+type="radio"
+name="habitat"
+value="Coastal"
+required>
+<span>
+Coastal</span>
+</label>
+<label class="habitat-option grassland">
+<input
+type="radio"
+name="habitat"
+value="Grassland"
+required>
+<span>
+Grassland</span>
+</label>
+<label class="habitat-option wetlands">
+<input
+type="radio"
+name="habitat"
+value="Wetlands"
+required>
+<span>
+Wetlands</span>
+</label>
+<label class="habitat-option desert">
+<input
+type="radio"
+name="habitat"
+value="Desert"
+required>
+<span>
+Desert</span>
+</label>
+
+<button 
+type="submit"
+class="generatehunt-btn">
+Generate Hunt</button>
+</form>
+{% if error %}
+<div class="error-box">
+    You must input an area and select a habitat.
+</div>
+{% endif %}
+</body>
+</html>
